@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% load static %}   
+{% block content %}
+<!-- Carousel Start -->
+<div class="header-carousel owl-carousel">
+    <div class="header-carousel-item">
+        <img src="{% static 'img/in2.jpg' %}" class="img-fluid w-100" alt="Invoice Image">
+        <div class="carousel-caption">
+            <div class="carousel-caption-content p-3">
+                <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">AI-Powered Invoice Text Extraction</h5>
+                <h1 class="display-1 text-capitalize text-white mb-4">Extract Key Details from Invoices Instantly</h1>
+                <p class="mb-5 fs-5">Upload your invoice and let our AI extract critical details such as itemized costs, totals, and dates quickly and accurately.</p>
+                <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Try Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="header-carousel-item">
+        <img src="{% static 'img/in1.avif' %}" class="img-fluid w-100" alt="Invoice Image">
+        <div class="carousel-caption">
+            <div class="carousel-caption-content p-3">
+                <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">AI-Based Invoice Q&A System</h5>
+                <h1 class="display-1 text-capitalize text-white mb-4">Ask Follow-up Questions on Your Invoices</h1>
+                <p class="mb-5 fs-5 animated slideInDown">After extracting invoice details, ask any questions and get quick answers from the data. Whether it's totals, items, or dates, we’ve got you covered!</p>
+                <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Get Started</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+
+</div>
+<!-- Navbar & Hero End -->
+
+
+<!-- Services Start -->
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Our AI-Powered Invoice Services</h4>
+            </div>
+            <h1 class="display-3 mb-4">Effortless Invoice Extraction & Follow-Up Q&A</h1>
+            <p class="mb-0">
+                Upload your invoices, let AI extract key details, and ask follow-up questions for instant answers.
+            </p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- AI Invoice Text Extraction -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded">
+                    <div class="service-img rounded-top">
+                        <img src="{% static 'img/in3.jpg' %}" class="img-fluid rounded-top" alt="Invoice Text Extraction" style="height: 250px; object-fit: cover; width: 100%;">
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">
+                                <i class="fas fa-file-alt me-3"></i>AI Invoice Text Extraction
+                            </h5>
+                            <p class="mb-4">
+                                Extract critical details like itemized costs, totals, and dates from invoices automatically.
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- AI-Powered Invoice Q&A -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded">
+                    <div class="service-img rounded-top">
+                        <img src="{% static 'img/in4.jpg' %}" class="img-fluid rounded-top" alt="Invoice Q&A" style="height: 250px; object-fit: cover; width: 100%;">
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">
+                                <i class="fas fa-question-circle me-3"></i>AI-Powered Invoice Q&A
+                            </h5>
+                            <p class="mb-4">
+                                Ask questions related to your invoices and get precise AI-generated answers instantly.
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Invoice Data Verification -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded">
+                    <div class="service-img rounded-top">
+                        <img src="{% static 'img/in5.jpg' %}" class="img-fluid rounded-top" alt="Invoice Data Verification" style="height: 250px; object-fit: cover; width: 100%;">
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">
+                                <i class="fas fa-check-circle me-3"></i>Invoice Data Verification
+                            </h5>
+                            <p class="mb-4">
+                                Ensure the extracted invoice data is accurate and verify important fields like totals and items.
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Invoice Summary Generation -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded">
+                    <div class="service-img rounded-top">
+                        <img src="{% static 'img/in6.jpg' %}" class="img-fluid rounded-top" alt="Invoice Summary" style="height: 250px; object-fit: cover; width: 100%;">
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">
+                                <i class="fas fa-clipboard-list me-3"></i>Invoice Summary Generation
+                            </h5>
+                            <p class="mb-4">
+                                Get a concise summary of your invoice, including key items, amounts, and total cost.
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Explore More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services End -->
+
+<!-- About Start -->
+<div class="container-fluid about bg-light py-5">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-img pb-5 ps-5">
+                    <img src="{% static 'img/in7.jpg' %}" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Invoice Extraction">
+                    <div class="about-experience">AI-Powered Invoice Extraction & Q&A</div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
+                <div class="section-title text-start mb-5">
+                    <h4 class="sub-title pe-3 mb-0">About Our Project</h4>
+                    <h1 class="display-3 mb-4">Smart Invoice Extraction & Q&A</h1>
+                    <p class="mb-4">
+                        Our platform leverages AI to extract detailed information from invoices and provide instant answers to follow-up questions related to your invoices.
+                    </p>
+                    <div class="mb-4">
+                        <p class="text-secondary">
+                            <i class="fa fa-check text-primary me-2"></i>Efficient extraction of critical data from invoices.
+                        </p>
+                        <p class="text-secondary">
+                            <i class="fa fa-check text-primary me-2"></i>AI-powered follow-up question answers for quick clarification.
+                        </p>
+                        <p class="text-secondary">
+                            <i class="fa fa-check text-primary me-2"></i>Verify extracted data to ensure accuracy.
+                        </p>
+                        <p class="text-secondary">
+                            <i class="fa fa-check text-primary me-2"></i>User-friendly interface for seamless invoice processing.
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">Discover More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Feature Start -->
+<div class="container-fluid feature py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Our Key Features</h4>
+            </div>
+            <h1 class="display-3 mb-4">AI-Powered Invoice Extraction & Q&A</h1>
+            <p class="mb-0">
+                Extract and understand invoice data instantly with our AI-driven extraction and Q&A system.
+            </p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Invoice Data Extraction -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row-cols-1 feature-item p-4">
+                    <div class="col-12">
+                        <div class="feature-icon mb-4">
+                            <div class="p-3 d-inline-flex bg-white rounded">
+                                <i class="fas fa-file-invoice fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="feature-content d-flex flex-column">
+                            <h5 class="mb-4">Instant Invoice Data Extraction</h5>
+                            <p class="mb-0">
+                                Automatically extract key information like amount, date, and vendor details from invoices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- AI Q&A System -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="row-cols-1 feature-item p-4">
+                    <div class="col-12">
+                        <div class="feature-icon mb-4">
+                            <div class="p-3 d-inline-flex bg-white rounded">
+                                <i class="fas fa-question-circle fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="feature-content d-flex flex-column">
+                            <h5 class="mb-4">Smart Q&A</h5>
+                            <p class="mb-0">
+                                Ask questions based on your invoice data and get instant, accurate answers from AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Verification of Data Accuracy -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="row-cols-1 feature-item p-4">
+                    <div class="col-12">
+                        <div class="feature-icon mb-4">
+                            <div class="p-3 d-inline-flex bg-white rounded">
+                                <i class="fas fa-check-circle fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="feature-content d-flex flex-column">
+                            <h5 class="mb-4">Data Accuracy Verification</h5>
+                            <p class="mb-0">
+                                Ensure the extracted data is accurate and reliable before proceeding with actions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- User-Friendly Interface -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="row-cols-1 feature-item p-4">
+                    <div class="col-12">
+                        <div class="feature-icon mb-4">
+                            <div class="p-3 d-inline-flex bg-white rounded">
+                                <i class="fas fa-user fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="feature-content d-flex flex-column">
+                            <h5 class="mb-4">Easy to Use</h5>
+                            <p class="mb-0">
+                                Intuitive and fast interface that simplifies invoice extraction and verification.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Details Button -->
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->
+
+{% endblock content %}

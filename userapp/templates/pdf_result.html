@@ -1,0 +1,245 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+{% block content %}
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0f2f5;
+  }
+
+  /* Overall container styling */
+  .container {
+    margin-top: 4rem;
+    padding-top: 2rem;
+  }
+
+  /* Invoice Card Styling */
+  .invoice-card {
+    background: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .invoice-card pre {
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    color: #333;
+  }
+
+  /* Chat Container */
+  .chat-container {
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Chat Bubble Common */
+  .chat-bubble {
+    max-width: 75%;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    line-height: 1.4;
+    position: relative;
+    word-break: break-word;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s forwards;
+  }
+
+  /* Fade In Animation */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* User Bubble */
+  .user-bubble {
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    color: #0d2538;
+    text-align: right;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+  }
+
+  /* Bot Bubble */
+  .bot-bubble {
+    background: #e9ecef;
+    color: #333;
+    text-align: left;
+    border-bottom-left-radius: 0;
+  }
+
+  /* Chat Header */
+  .chat-header {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  /* Chat Input */
+  .chat-input {
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .chat-submit-btn {
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    color: #fff;
+    transition: background 0.3s ease;
+  }
+
+  .chat-submit-btn:hover {
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+  }
+
+  /* Custom Scrollbar for Chat Container */
+  .chat-container::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .chat-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .chat-container::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+  }
+</style>
+
+<div class="container">
+  <div class="row mt-4">
+    <!-- Left Column: Invoice Details -->
+    <div class="col-md-5">
+      <h2 class="mb-3">Invoice Details</h2>
+      <div class="invoice-card">
+        <pre>{{ extracted_text }}</pre>
+        <!-- Select to choose file format for download -->
+        <div class="download-options mt-3">
+          <label for="download-format">Download As:</label>
+          <select id="download-format" class="form-control">
+            <option value="">Select format</option>
+            <option value="txt">Text File (.txt)</option>
+            <option value="json">JSON File (.json)</option>
+            <option value="docx">Word Document (.docx)</option>
+            <option value="pdf">PDF File (.pdf)</option>
+            <!-- <option value="csv">CSV File (.csv)</option> -->
+            <option value="html">HTML File (.html)</option>
+          </select>
+          <button id="download-btn" class="btn btn-primary mt-2">Download</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Chat Interface -->
+    <div class="col-md-7">
+      <h2 class="chat-header">Follow Up Questions</h2>
+      <div id="chat-container" class="chat-container" style="height: 300px;">
+        {% if conversation %}
+          {% for msg in conversation %}
+            {% if msg.question %}
+              <div class="chat-bubble user-bubble">
+                {{ msg.question }}
+              </div>
+            {% endif %}
+            {% if msg.answer %}
+              <div class="chat-bubble bot-bubble">
+                {{ msg.answer }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <form id="chat-form" method="post" action="{% url 'chat_invoice' %}" class="mt-3">
+        {% csrf_token %}
+        <div class="input-group">
+          <input type="text" name="question" id="question" class="form-control chat-input"
+            placeholder="Enter your question about the invoice" aria-label="Your question" required>
+          <div class="input-group-append">
+            <button class="btn chat-submit-btn" type="submit">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Handle chat form submission via AJAX
+  document.getElementById("chat-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    fetch("{% url 'chat_invoice' %}", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const chatContainer = document.getElementById("chat-container");
+      if (data.answer) {
+        // Create a chat bubble for the user's question.
+        const userBubble = document.createElement("div");
+        userBubble.classList.add("chat-bubble", "user-bubble");
+        userBubble.innerText = document.getElementById("question").value;
+        chatContainer.appendChild(userBubble);
+
+        // Create a chat bubble for the API's answer.
+        const botBubble = document.createElement("div");
+        botBubble.classList.add("chat-bubble", "bot-bubble");
+        botBubble.innerText = data.answer;
+        chatContainer.appendChild(botBubble);
+
+        // Clear the input field and scroll the chat container.
+        document.getElementById("chat-form").reset();
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      } else {
+        alert("Error: " + data.error);
+      }
+    });
+  });
+
+  // Download button functionality
+  document.getElementById("download-btn").addEventListener("click", function () {
+    const selectedFormat = document.getElementById("download-format").value;
+
+    if (!selectedFormat) {
+      alert("Please select a file format.");
+      return;
+    }
+
+    // Prepare the request URL with selected format
+    const url = `/user/download_invoice/?format=${selectedFormat}`;
+
+    // Trigger the download by navigating to the URL
+    window.location.href = url;
+  });
+</script>
+{% endblock %}
